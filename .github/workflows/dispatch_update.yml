@@ -1,0 +1,23 @@
+name: Dispatch Update
+
+on:
+  repository_dispatch:
+    types: [update]
+
+jobs:
+  print_proto_files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Clone yoshidax_example_proto repository
+      env:
+        PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
+      run: |
+        git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax/yoshidax_example_proto.git
+        cd yoshidax_example_proto/src/printing
+        for file in *.proto; do
+          cat "$file"
+        done
