@@ -25,7 +25,8 @@ jobs:
         cd yoshidax_example_proto
         git checkout master
         git pull origin master
+        rm -rf .git
         cd ..
-        git add .
+        git add yoshidax_example_proto
         git commit -m "Update proto files"
         git push origin master
