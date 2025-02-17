@@ -30,4 +30,4 @@ jobs:
         git add yoshidax_example_proto
         git commit -m "Update proto files"
         git remote -v
-        git push https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax/yoshidax_example_proto_clinet.git master
+        git push https://yoshidax:${{ secrets.GITHUB_TOKEN }}@github.com/yoshidax/yoshidax_example_proto_clinet.git master
