@@ -12,6 +12,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up Git user
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Clone yoshidax_example_proto repository
       env:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
