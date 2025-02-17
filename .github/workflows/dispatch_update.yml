@@ -20,6 +20,7 @@ jobs:
     - name: Clone yoshidax_example_proto repository
       env:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax/yoshidax_example_proto.git
         cd yoshidax_example_proto
@@ -30,4 +31,4 @@ jobs:
         git add yoshidax_example_proto
         git commit -m "Update proto files"
         git remote -v
-        git push https://yoshidax:${{ secrets.GITHUB_TOKEN }}@github.com/yoshidax/yoshidax_example_proto_clinet.git master
+        git push origin master
