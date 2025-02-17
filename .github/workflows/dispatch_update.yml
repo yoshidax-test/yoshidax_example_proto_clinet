@@ -2,7 +2,7 @@ name: Dispatch Update
 
 on:
   repository_dispatch:
-    types: [update]
+    types: [update-printing-proto]
 
 jobs:
   print_proto_files:
@@ -17,7 +17,14 @@ jobs:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
       run: |
         git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax/yoshidax_example_proto.git
-        cd yoshidax_example_proto/src/printing
+        cd yoshidax_example_proto
+        git checkout master
+        git pull origin master
+        cd src/printing
         for file in *.proto; do
           cat "$file"
         done
+        cd ../..
+        git add .
+        git commit -m "Update proto files"
+        git push origin master
