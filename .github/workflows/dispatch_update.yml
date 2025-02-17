@@ -17,6 +17,10 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+    - name: Remove existing yoshidax_example_proto directory
+      run: |
+        rm -rf yoshidax_example_proto
+
     - name: Clone yoshidax_example_proto repository
       env:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
