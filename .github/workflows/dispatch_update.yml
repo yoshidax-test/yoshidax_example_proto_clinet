@@ -20,11 +20,17 @@ jobs:
         cd yoshidax_example_proto
         git checkout master
         git pull origin master
-        cd src/printing
-        for file in *.proto; do
-          cat "$file"
-        done
-        cd ../..
+
+        if [ -d "src/printing" ]; then
+          cd src/printing
+          for file in *.proto; do
+            cat "$file"
+          done
+          cd ../..
+        else
+          echo "Directory src/printing does not exist."
+        fi
+
         git add .
         git commit -m "Update proto files"
         git push origin master
