@@ -3,6 +3,12 @@ name: Dispatch Update
 on:
   repository_dispatch:
     types: [update-printing-proto]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: マニュアル操作で実行する理由
+        required: false
+        type: string
 
 jobs:
   print_proto_files:
@@ -32,7 +38,7 @@ jobs:
         git pull origin master
         rm -rf .git
         cd ..
-        git add yoshidax_example_proto
+        git add .
         git commit -m "Update proto files"
         git remote -v
         git push origin master
