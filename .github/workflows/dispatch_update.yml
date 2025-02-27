@@ -52,6 +52,11 @@ jobs:
         rm -rf .git
         cd ..
         git add .
-        git commit -m "Update proto files"
-        git remote -v
-        git push origin master
+        # 変更があるかどうかをチェック
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+          exit 0
+        else
+          git commit -m "Update proto files"
+          git push origin master
+        fi
