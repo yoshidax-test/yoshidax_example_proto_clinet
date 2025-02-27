@@ -5,11 +5,17 @@ on:
     types: [update-printing-proto]
   workflow_dispatch:
     inputs:
+      target_branch:
+        description: 'Target branch for release'
+        required: true
+        default: 'master'
+        type: choice
+        options:
+          - master
       reason:
         description: マニュアル操作で実行する理由
         required: false
         type: string
-
 jobs:
   print_proto_files:
     runs-on: ubuntu-latest
