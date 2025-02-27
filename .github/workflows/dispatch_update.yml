@@ -5,7 +5,7 @@ on:
     types: [update-printing-proto]
   workflow_dispatch:
     inputs:
-      inputs:
+      reason:
         description: Reason for executing manually
         required: true
         type: string
