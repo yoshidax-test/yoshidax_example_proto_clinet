@@ -16,14 +16,17 @@ jobs:
     steps:
     - name: Echo event type
       run: echo ${{ github.event_name }}
+
     - name: Validate branch
       if: github.event_name == 'workflow_dispatch'
       run: |
+        echo "*** Current branch: ${{ github.ref }}"
         if [ "${{ github.ref }}" != "refs/heads/master" ]; then
           echo "Error: This workflow must be run from the master branch"
           echo "Current branch: ${{ github.ref }}"
           exit 1
         fi
+        echo "*** Branch is valid"
 
     - name: Record manual execution reason
       if: github.event_name == 'workflow_dispatch'
