@@ -5,22 +5,29 @@ on:
     types: [update-printing-proto]
   workflow_dispatch:
     inputs:
-      target_branch:
-        description: 'Target branch for release'
+      inputs:
+        description: Reason for executing manually
         required: true
-        default: 'master'
-        type: choice
-        options:
-          - master
-      reason:
-        description: マニュアル操作で実行する理由
-        required: false
         type: string
 jobs:
   print_proto_files:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Validate branch
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        if [ "${{ github.ref }}" != "refs/heads/master" ]; then
+          echo "Error: This workflow must be run from the master branch"
+          echo "Current branch: ${{ github.ref }}"
+          exit 1
+        fi
+
+    - name: Record manual execution reason
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "Manual execution reason: ${{ github.event.inputs.reason }}"
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
