@@ -31,7 +31,7 @@ jobs:
     - name: Record manual execution reason
       if: github.event_name == 'workflow_dispatch'
       run: |
-        echo "Manual execution reason: ${{ github.event.inputs.reason }}"
+        echo "Manual execution reason: ${{ inputs.reason }}"
 
     - name: Checkout repository
       uses: actions/checkout@v2
