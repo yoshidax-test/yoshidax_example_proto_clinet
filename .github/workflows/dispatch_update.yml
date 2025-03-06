@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Fail if branch is not master
+      if: github.ref != 'refs/heads/master'
+      run: |
+        echo "This workflow must not be triggered with workflow_dispatch on a branch other than master"
+        exit 1
+
     - name: Echo event type
       run: echo ${{ github.event_name }}
 
