@@ -56,18 +56,20 @@ jobs:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git
+        git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
         cd yoshidax_example_proto
         git checkout master
         git pull origin master
         rm -rf .git
         cd ..
         git add .
+        git commit --allow-empty -m "Update proto files"
+        git push origin master
         # 変更があるかどうかをチェック
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-          exit 0
-        else
-          git commit -m "Update proto files"
-          git push origin master
-        fi
+        # if git diff --staged --quiet; then
+        #   echo "No changes to commit"
+        #   exit 0
+        # else
+        #   git commit -m "Update proto files"
+        #   git push origin master
+        # fi
