@@ -73,5 +73,5 @@ jobs:
           exit 0
         else
           git commit -m "Update proto files"
-          git push -f https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
+          git push https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
         fi
