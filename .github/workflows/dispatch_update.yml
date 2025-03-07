@@ -65,7 +65,7 @@ jobs:
         cd ..
         git add .
         git commit --allow-empty -m "Update proto files"
-        git push origin master
+        git push https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
         # 変更があるかどうかをチェック
         # if git diff --staged --quiet; then
         #   echo "No changes to commit"
