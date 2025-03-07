@@ -14,33 +14,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Fail if branch is not master
-      if: github.ref != 'refs/heads/master'
-      run: |
-        echo "This workflow must not be triggered with workflow_dispatch on a branch other than master"
-        exit 1
+    # - name: Fail if branch is not master
+    #   if: github.ref != 'refs/heads/master'
+    #   run: |
+    #     echo "This workflow must not be triggered with workflow_dispatch on a branch other than master"
+    #     exit 1
 
-    - name: Echo event type
-      run: echo ${{ github.event_name }}
+    # - name: Echo event type
+    #   run: echo ${{ github.event_name }}
 
-    - name: Validate branch
-      if: github.event_name == 'workflow_dispatch'
-      run: |
-        echo "*** Current branch: ${{ github.ref }}"
-        if [ "${{ github.ref }}" != "refs/heads/master" ]; then
-          echo "Error: This workflow must be run from the master branch"
-          echo "Current branch: ${{ github.ref }}"
-          exit 1
-        fi
-        echo "*** Branch is valid"
+    # - name: Validate branch
+    #   if: github.event_name == 'workflow_dispatch'
+    #   run: |
+    #     echo "*** Current branch: ${{ github.ref }}"
+    #     if [ "${{ github.ref }}" != "refs/heads/master" ]; then
+    #       echo "Error: This workflow must be run from the master branch"
+    #       echo "Current branch: ${{ github.ref }}"
+    #       exit 1
+    #     fi
+    #     echo "*** Branch is valid"
 
-    - name: Record manual execution reason
-      if: github.event_name == 'workflow_dispatch'
-      run: |
-        echo "Manual execution reason: ${{ inputs.reason }}"
+    # - name: Record manual execution reason
+    #   if: github.event_name == 'workflow_dispatch'
+    #   run: |
+    #     echo "Manual execution reason: ${{ inputs.reason }}"
 
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Git user
       run: |
@@ -56,7 +56,7 @@ jobs:
         PRIVATE_GH_PAT: ${{ secrets.PRIVATE_GH_PAT }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax/yoshidax_example_proto.git
+        git clone https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git
         cd yoshidax_example_proto
         git checkout master
         git pull origin master
