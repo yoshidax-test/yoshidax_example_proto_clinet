@@ -75,5 +75,5 @@ jobs:
           git commit -m "Update proto files"
           git pull --rebase origin master
           git status
-          git push https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
+          git push https://yoshidax:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto_clinet.git HEAD:master
         fi
