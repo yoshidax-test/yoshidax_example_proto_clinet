@@ -67,13 +67,11 @@ jobs:
         rm -rf .git
         cd ..
         git add .
-        git commit --allow-empty -m "Update proto files"
-        git push https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
         # 変更があるかどうかをチェック
-        # if git diff --staged --quiet; then
-        #   echo "No changes to commit"
-        #   exit 0
-        # else
-        #   git commit -m "Update proto files"
-        #   git push origin master
-        # fi
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+          exit 0
+        else
+          git commit -m "Update proto files"
+          git push https://x-access-token:${{ secrets.PRIVATE_GH_PAT }}@github.com/yoshidax-test/yoshidax_example_proto.git HEAD:master
+        fi
